@@ -22,3 +22,15 @@ bt g controller <project_name>
 bt g router <project_name>
 bt g service <project_name>
 ```
+
+## 遇到的问题
+
+### Q1 权限拒绝
+
+```bash
+zsh: permission denied: ./bin/bt
+```
+
+解决办法：
+`chmod +x bin/*`
+原因：bin目录下的文件没有可执行权限。

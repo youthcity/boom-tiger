@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+
+program
+  .option('-f, --force', 'force installation')
+  .parse(process.argv);
+
+  var pkgs = program.args;
+
+  console.log(program, '  ', pkgs);

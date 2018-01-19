@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const join = require('path').join;
+const exists = require('fs').existsSync;
+
+const pkg = require('../package.json');
+
+
+program
+  .version(pkg.version)
+  .description('Generate Tiger template file')  
+  .command('new [name]', 'init a new project').alias('n')  
+  .command('generate [name]', 'init a new project').alias('g')    
+  .usage('<command> [options]')
+  .on('--help', print_help)
+  .parse(process.argv);
+
+
+function print_help () {
+  console.log();  
+  console.log('  Commands:');
+  console.log();
+  console.log('    new            Creates a new project');
+  console.log('    generate       Generates new file (short-cut alias: "g") [controller | router | service] [path]');
+  console.log();
+  console.log('  All commands can be run with -h (or --help) for more information.')
+}
