@@ -1,14 +1,14 @@
 import * as JoiRouter from 'koa-joi-router';
 
 import * as IGlobal from 'interfaces/global_interfaces';
-import * as ICloudVar from 'interfaces/cloud_variable_interfaces';
+import * as I{{ formated_name }} from 'interfaces/{{ name }}_interfaces';
 
 const Joi = JoiRouter.Joi;
 
-// @autoinject(name=cloud_variable_contract)
+// @autoinject(name={{ name }}_contract)
 export function contract_factory(
   u:IGlobal.Util,
-) : ICloudVar.Contract {
+) : I{{ formated_name }}.Contract {
 
   // const count_current_attendances:JoiRouter.Contract = {
   //   res: {

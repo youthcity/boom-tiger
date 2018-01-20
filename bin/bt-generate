@@ -6,4 +6,8 @@ program
   .option('-f, --force', 'force installation')
   .parse(process.argv);
 
-console.log(program.argv);
+console.log(program.args);
+
+require('../src/generate')(program, {
+  cwd: process.cwd(),
+});

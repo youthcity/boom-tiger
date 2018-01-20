@@ -23,6 +23,16 @@ bt g router <project_name>
 bt g service <project_name>
 ```
 
+## 文件生成实现逻辑
+
+假设 filename 参数为 <cloud_variable> 或 <cloudVariable>
+
+
+
+- 根据文件名，判断文件夹是否存在。
+- 若不存在，则生成。
+- 生成指定文件
+
 ## 遇到的问题
 
 ### Q1 权限拒绝

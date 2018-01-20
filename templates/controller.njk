@@ -1,12 +1,12 @@
 import JoiRouter = require('koa-joi-router');
 
 import * as IGlobal from 'interfaces/global_interfaces';
-import * as ICloudVar from 'interfaces/cloud_variable_interfaces';
+import * as {{'I' + formated_name }} from 'interfaces/{{ name }}_interfaces';
 
-// @autoinject(name=cloud_variable_controller)
+// @autoinject(name={{ name }}_controller)
 export function controller_factory(
     u:IGlobal.Util,
-) : ICloudVar.Controller {
+) : I{{ formated_name }}.Controller {
 
   return {
   };

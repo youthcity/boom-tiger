@@ -1,0 +1,11 @@
+import * as IGlobal from 'interfaces/global_interfaces';
+import * as I{{ formated_name }} from 'interfaces/{{ name }}_interfaces';
+
+// @autoinject(name={{ name }}_service)
+export function {{ name }}_service_factory(
+  u:IGlobal.Util,
+) : I{{ formated_name }}.Service {
+
+  return {
+  };
+}

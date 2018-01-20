@@ -1,12 +1,13 @@
 import * as IGlobal from 'interfaces/global_interfaces';
-import * as ICloudVar from 'interfaces/cloud_variable_interfaces';
+import * as I{{ formated_name }} from 'interfaces/{{ name }}_interfaces';
 
-// @autoinject(name=cloud_variable_db_service)
-export function cloud_variable_db_service(
+// @autoinject(name={{ name }}_db_service)
+export function {{ name }}_db_service(
   u:IGlobal.Util,
   db_provider:IGlobal.DbProvider,
-) : ICloudVar.DbService {
+) : I{{ formated_name }}.DbService {
 
+  // This is a example about getting repo and cache
   // const attendance_repo = db_provider.get_repository(Attendance);
   // const cache = db_provider.get_cache_connection();
 

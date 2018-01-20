@@ -1,26 +1,27 @@
 import JoiRouter = require('koa-joi-router');
 
 import * as IGlobal from 'interfaces/global_interfaces';
-import * as ICloudVar from 'interfaces/cloud_variable_interfaces';
+import * as I{{ formated_name }} from 'interfaces/{{ name }}_interfaces';
 
-// @autoinject(name=cloud_variable_router)
-export function cloud_variable_router_factory(
+// @autoinject(name={{ name }}_router)
+export function {{ name }}_router_factory(
   u:IGlobal.Util,
   auth_route_middleware:JoiRouter.JoiMiddleware,
+  {{ name }}_controller:I{{ formated_name }}.Controller,
 ) : JoiRouter.RouterInstance {
 
   const api_prefix = u.cfg.origin_server.api_prefix;
-  const router_prefix = api_prefix + '/cloud-variable';
+  const router_prefix = api_prefix + '/{{ name | replace("_", "-")}}';
 
   const router = JoiRouter();
   router.prefix(router_prefix);
 
   // router.route({
   //   method: 'get',
-  //   path: '/releases/latest',
+  //   path: '/test',
   //   handler: [
   //     auth_route_middleware,
-  //     pc_client_controller.get_latest_release,
+  //     {{ name }}_controller.get_latest_release,
   //   ],
   //   meta: {
   //     is_public: true,
