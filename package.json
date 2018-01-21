@@ -2,7 +2,9 @@
   "name": "boom-tiger",
   "version": "0.0.1",
   "description": "The tiger's command line utility",
-  "main": "index.js",
+  "bin": {
+    "bt": "./bin/bt"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
