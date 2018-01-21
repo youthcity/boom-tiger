@@ -4,7 +4,7 @@ const nunjucks = require('nunjucks');
 const fs = require('fs');
 const path = require('path');
 
-const env_nunjucks = nunjucks.configure('templates');
+const env_nunjucks = nunjucks.configure(path.join(__dirname, '../templates'));
 
 function success(type, message) {
   console.log(`${chalk.green.bold(leftPad(type, 12))}  ${message}`);
@@ -41,7 +41,7 @@ function generate(program, { cwd }) {
   }
 
   const type_set = new Set(['const', 'contract', 'controller',
-   'db_service', 'error', 'interfaces', 'router', '``service']);
+   'db_service', 'error', 'interfaces', 'router', 'service']);
   if (!type_set.has(type)) {
     error(`ERROR: uncaught type ${type}`);
     return;

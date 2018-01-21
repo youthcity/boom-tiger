@@ -22,7 +22,7 @@ function main() {
   const filename = 'interface.ts';
   const file_path = path.join(dir_path, filename);
 
-  nunjucks.configure('templates');
+  nunjucks.configure(path.join(__dirname, '../templates'));
   const test = nunjucks.render('interfaces.njk');
   fs.writeFileSync(file_path, test);
 }

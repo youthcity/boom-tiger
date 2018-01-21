@@ -2,16 +2,20 @@
 
 ## 功能设计
 
-- []生成项目全部文件
-- []生成 `controller` 文件
-- []生成 `router`
-- []生成 `service`
-- []生成 `db_service`
-- []生成 `error`
-- []生成 `contract`
-- []生成 `interfaces`
+- []一键生成项目全部文件
+- [x]生成 `controller` 文件
+- [x]生成 `router`
+- [x]生成 `service`
+- [x]生成 `db_service`
+- [x]生成 `error`
+- [x]生成 `contract`
+- [x]生成 `interfaces`
 - []修改 `api_router`
 - []修改 `doc_generator`
+- []在根据当前环境写入指定文件内
+- []将`interface`写入interface目录下
+- []修复`error`的文件名
+- []一键生成所有文件时清空dist文件
 
 ## 命令设计
 
