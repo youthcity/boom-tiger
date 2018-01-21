@@ -136,6 +136,6 @@ fabric.properties
 .idea/sonarlint
 
 # dist
-.dist
+dist
 
 # End of https://www.gitignore.io/api/node,webstorm,visualstudiocode

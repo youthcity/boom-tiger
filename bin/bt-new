@@ -6,6 +6,7 @@ program
   .option('-f, --force', 'force installation')
   .parse(process.argv);
 
-  var pkgs = program.args;
-
-  console.log(program, '  ', pkgs);
+  require('../src/init')(
+    program,
+    { cwd: process.cwd() }
+  );
