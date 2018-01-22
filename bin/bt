@@ -10,8 +10,8 @@ const pkg = require('../package.json');
 program
   .version(pkg.version)
   .description('Generate Tiger template file')  
-  .command('new [name]', 'init a new project').alias('n')  
-  .command('generate [name]', 'init a new project').alias('g')    
+  .command('new <project_name>', 'init a new project').alias('n')  
+  .command('generate <type> <project_name> [<target_path>]', 'generate file by type').alias('g')    
   .usage('<command> [options]')
   .on('--help', print_help)
   .parse(process.argv);

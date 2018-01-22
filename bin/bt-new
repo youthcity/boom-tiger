@@ -3,7 +3,6 @@
 const program = require('commander');
 
 program
-  .option('-f, --force', 'force installation')
   .parse(process.argv);
 
   require('../src/init')(
