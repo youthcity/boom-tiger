@@ -16,19 +16,5 @@ export function {{ name }}_router_factory(
   const router = JoiRouter();
   router.prefix(router_prefix);
 
-  // router.route({
-  //   method: 'get',
-  //   path: '/test',
-  //   handler: [
-  //     auth_route_middleware,
-  //     {{ name }}_controller.get_latest_release,
-  //   ],
-  //   meta: {
-  //     is_public: true,
-  //     body_has_private_information: false,
-  //     permitted_user_types: [],
-  //   },
-  // });
-
   return router;
 }
