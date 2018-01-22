@@ -1,15 +1,23 @@
 {
   "name": "boom-tiger",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "The tiger's command line utility",
   "bin": {
     "bt": "./bin/bt"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youthcity/boom-tiger.git"
   },
-  "author": "tiancity",
+  "keywords": [
+    "CLI"
+  ],
+  "author": "youthcity",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youthcity/boom-tiger/issues"
+  },
+  "homepage": "https://github.com/youthcity/boom-tiger#readme",
   "dependencies": {
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
