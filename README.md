@@ -47,12 +47,12 @@ We have 2 commands: new and generate(alias g).
 - [x] 生成 `error`
 - [x] 生成 `contract`
 - [x] 生成 `interfaces`
+- [x] 在根据当前环境写入指定文件内
+- [x] 修复`error`的文件名
+- [x] 一键生成所有文件时清空dist文件
+- [] 将`interface`写入interface目录下
 - [] 修改 `api_router`
 - [] 修改 `doc_generator`
-- [] 在根据当前环境写入指定文件内
-- [] 将`interface`写入interface目录下
-- [] 修复`error`的文件名
-- [x] 一键生成所有文件时清空dist文件
 
 ## 命令设计
 

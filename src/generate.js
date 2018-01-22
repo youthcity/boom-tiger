@@ -19,9 +19,11 @@ function info(message) {
 }
 
 function generate(program, { cwd }) {
+  const tiger_path = path.join(cwd, '/Tiger/src');
   const default_dir_path = path.join(__dirname, '../dist');
   const args = program.args;
-  const [ type, name, target_path ] = args;
+  const [ type, name ] = args;
+  let target_path = args[2];
 
   if (type == null) {
     error('请输入生成文件类型');
@@ -33,11 +35,16 @@ function generate(program, { cwd }) {
     return;
   }
 
-  // TODO 判断是否有路径，没有
+  if (cwd.indexOf('Tiger') >= 0) {
+    const files_dir = target_path || name;
+    target_path = path.join(tiger_path, files_dir);
+  } else {
+    target_path = path.join(cwd, './dist');
+  }
 
-  if (!target_path && !fs.existsSync(default_dir_path)) {
+  if (!fs.existsSync(target_path)) {
     info('生成默认文件夹');
-    fs.mkdirSync(default_dir_path);
+    fs.mkdirSync(target_path);
   }
 
   const type_set = new Set(['const', 'contract', 'controller',
@@ -47,19 +54,20 @@ function generate(program, { cwd }) {
     return;
   }
 
-  create_file(type, name);
+  create_file(type, name, target_path);
 }
 
-function create_file(type, name) {
+function create_file(type, name, target_path) {
   const formated_name = capitalize_first_letter(snake_to_camel(name));
   const template_path = path.join(__dirname, '../src', `${type}.njk`);
-  const file_path = path.join(__dirname, '../dist', `${name}_${type}.ts`);
+  const filename = type === 'error' ? `${type}.ts` : `${name}_${type}.ts`;
+  const file_path = path.join(target_path, filename);
 
   fs.writeFileSync(file_path, env_nunjucks.render(`${type}.njk`, {
     name: name,
     formated_name,
   }));
-
+  success('Created file', file_path);
 }
 
 function snake_to_camel(s) {
@@ -69,9 +77,5 @@ function snake_to_camel(s) {
 function capitalize_first_letter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
-const type_func = {
-
-};
 
 module.exports = generate;

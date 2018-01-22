@@ -21,30 +21,37 @@ function info(message) {
 }
 
 async function init(program, { cwd }) {
-  const default_dir_path = path.join(__dirname, '../dist');
+  const tiger_path = path.join(cwd, '/Tiger/src');
   const args = program.args;
-  const [ name, target_path ] = args;
+  const name = args[0];
+  let target_path = args[1];
 
   if (name == null) {
     error('请输入项目名');
     return;
   }
 
-  if (!target_path) {
-    info('创建默认文件夹');
-    if (fs.existsSync(default_dir_path)) {
-      await delete_dir(default_dir_path);
-    }
-    info('创建文件夹');
-    fs.mkdirSync(default_dir_path);
+  const files_dir = target_path || name;  
+  if (cwd.indexOf('Tiger') >= 0) {
+    target_path = path.join(tiger_path, files_dir);
+  } else {
+    target_path = path.join(cwd, files_dir);
   }
+
+  if (fs.existsSync(target_path)) {
+    await delete_dir(target_path);
+  }
+  info('创建文件夹');    
+  fs.mkdirSync(target_path);
 
   const type_set = new Set(['const', 'contract', 'controller',
    'db_service', 'error', 'interfaces', 'router', 'service']);
 
   for (const type of type_set) {
-    create_file(type, name);
+    create_file(type, name, target_path);
   }
+
+  success('Success', `Created ${name} at ${target_path}.`)
 
 }
 
@@ -55,23 +62,23 @@ async function delete_dir(path) {
         reject(err);
       }
 
-      console.log(dirs, files);
-      info('删除默认文件夹');
+      info('删除原文件夹');
       resolve();
     });
   });
 }
 
-function create_file(type, name) {
+function create_file(type, name, target_path) {
   const formated_name = capitalize_first_letter(snake_to_camel(name));
   const template_path = path.join(__dirname, '../src', `${type}.njk`);
-  const file_path = path.join(__dirname, '../dist', `${name}_${type}.ts`);
+  const filename = type === 'error' ? `${type}.ts` : `${name}_${type}.ts`;
+  const file_path = path.join(target_path, filename);
 
   fs.writeFileSync(file_path, env_nunjucks.render(`${type}.njk`, {
     name: name,
     formated_name,
   }));
-
+  success('Created file', file_path);
 }
 
 function snake_to_camel(s) {
