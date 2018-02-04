@@ -39,12 +39,15 @@ We have 2 commands: new and generate(alias g).
 
 ## Inject code
 
+注入路由信息到特定文件
+
 ```javascript
     tian_router:JoiRouter.RouterInstance,
     //@boom-tiger-inject
 ```
 
 在指定文件，需要插入路由参数的位置，写入标记 `//@boom-tiger-inject`.
+
 当创建路由文件或初始化项目时，会自动注入到文件中.
 
 ## 功能设计
@@ -109,7 +112,7 @@ zsh: permission denied: ./bin/bt
 最初的想法想通过 `typescript` 的词法分析工具，将TS文件转化为语法树，然后往指定的位置插入内容，最后再将语法树，转化成文本。
 但是带来了一个新的问题，原有文本的格式会被丢失。 `typescript`在转换语法树的时候，会过滤掉空格和换行。因而，再将语法树转化为文本的时候，会丢失一些格式。
 
-于是，我们使用暴力方法，达到文本插入：
+于是，我们使用暴力方法（正则大法），达到文本插入效果：
 
 1. 在文件内的指定位置插入标志位 `//@boom-tiger-inject`
 2. 读取文件，利用正则匹配替换掉标志位
