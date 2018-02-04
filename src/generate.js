@@ -4,19 +4,9 @@ const nunjucks = require('nunjucks');
 const fs = require('fs');
 const path = require('path');
 
+const logger = require('./logger');
+const inject_router = require('./inject_router');
 const env_nunjucks = nunjucks.configure(path.join(__dirname, '../templates'));
-
-function success(type, message) {
-  console.log(`${chalk.green.bold(leftPad(type, 12))}  ${message}`);
-}
-
-function error(message) {
-  console.log(chalk.red(message));
-}
-
-function info(message) {
-  console.log(chalk.blue(message));
-}
 
 function generate(program, { cwd }) {
   const tiger_path = path.join(cwd, '/Tiger/src');
@@ -26,12 +16,12 @@ function generate(program, { cwd }) {
   let target_path = args[2];
 
   if (type == null) {
-    error('请输入生成文件类型');
+    logger.error('请输入生成文件类型');
     return;
   }
 
   if (name == null) {
-    error('请输入文件名');
+    logger.error('请输入文件名');
     return;
   }
 
@@ -43,15 +33,18 @@ function generate(program, { cwd }) {
   }
 
   if (!fs.existsSync(target_path)) {
-    info('生成默认文件夹');
+    logger.info('生成默认文件夹');
     fs.mkdirSync(target_path);
   }
 
   const type_set = new Set(['const', 'contract', 'controller',
    'db_service', 'error', 'interfaces', 'router', 'service']);
   if (!type_set.has(type)) {
-    error(`ERROR: uncaught type ${type}`);
+    logger.error(`ERROR: uncaught type ${type}`);
     return;
+  }
+  if (type === 'router') {
+    inject_router(cwd, name);
   }
 
   create_file(type, name, target_path);
@@ -67,7 +60,7 @@ function create_file(type, name, target_path) {
     name: name,
     formated_name,
   }));
-  success('Created file', file_path);
+  logger.success('Created file', file_path);
 }
 
 function snake_to_camel(s) {
