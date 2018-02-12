@@ -1,6 +1,6 @@
 {
   "name": "boom-tiger",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "The tiger's command line utility",
   "bin": {
     "bt": "./bin/bt"

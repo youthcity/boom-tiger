@@ -65,7 +65,7 @@ We have 2 commands: new and generate(alias g).
 - [x] 一键生成所有文件时清空dist文件
 - [x] 注入路由参数到 `api_router`
 - [x] 注入路由参数到 `doc_generator`
-- [] 将`interface`写入interface目录下
+- [x] 将`interface`写入interface目录下
 - [] 一键生成 DB Service 层 CRUD
 - [] 交互式生成 DB Service 层 CRUD
 
