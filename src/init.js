@@ -15,6 +15,7 @@ async function init(program, { cwd }) {
   const args = program.args;
   const name = args[0];
   let target_path = args[1];
+  let is_in_tiger = false;
 
   if (name == null) {
     logger.error('请输入项目名');
@@ -24,6 +25,7 @@ async function init(program, { cwd }) {
   const files_dir = target_path || name;  
   if (cwd.indexOf('Tiger') > -1) {
     target_path = path.join(tiger_path, files_dir);
+    is_in_tiger = true;
   } else {
     target_path = path.join(cwd, files_dir);
   }
@@ -35,11 +37,17 @@ async function init(program, { cwd }) {
   fs.mkdirSync(target_path);
 
   const type_set = new Set(['const', 'contract', 'controller',
-   'db_service', 'error', 'interfaces', 'router', 'service']);
+   'db_service', 'error', 'interface', 'router', 'service']);
 
   for (const type of type_set) {
     if (type === 'router') {
       inject_router(cwd, name);
+    }
+
+    if (type === 'interface' && is_in_tiger) {
+      const interface_target_path = path.join(tiger_path, 'interfaces');
+      create_file(type, name, interface_target_path);
+      continue;
     }
 
     create_file(type, name, target_path);

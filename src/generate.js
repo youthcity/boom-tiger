@@ -14,6 +14,7 @@ function generate(program, { cwd }) {
   const args = program.args;
   const [ type, name ] = args;
   let target_path = args[2];
+  let is_in_tiger = false;
 
   if (type == null) {
     logger.error('请输入生成文件类型');
@@ -28,6 +29,7 @@ function generate(program, { cwd }) {
   if (cwd.indexOf('Tiger') >= 0) {
     const files_dir = target_path || name;
     target_path = path.join(tiger_path, files_dir);
+    is_in_tiger = true;
   } else {
     target_path = path.join(cwd, './dist');
   }
@@ -38,13 +40,19 @@ function generate(program, { cwd }) {
   }
 
   const type_set = new Set(['const', 'contract', 'controller',
-   'db_service', 'error', 'interfaces', 'router', 'service']);
+   'db_service', 'error', 'interface', 'router', 'service']);
   if (!type_set.has(type)) {
     logger.error(`ERROR: uncaught type ${type}`);
     return;
   }
   if (type === 'router') {
     inject_router(cwd, name);
+  }
+
+  if (type === 'interface' && is_in_tiger) {
+    const interface_target_path = path.join(tiger_path, 'interfaces');
+    create_file(type, name, interface_target_path);
+    return;
   }
 
   create_file(type, name, target_path);
