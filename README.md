@@ -68,6 +68,8 @@ We have 2 commands: new and generate(alias g).
 - [x] 将`interface`写入interface目录下
 - [] 一键生成 DB Service 层 CRUD
 - [] 交互式生成 DB Service 层 CRUD
+- [] 修复生成的interface 文件名为 XXX_interfaces.ts
+- [] 注入Error到error_factories.ts
 
 ## 命令设计
 
