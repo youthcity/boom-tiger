@@ -70,6 +70,7 @@ We have 2 commands: new and generate(alias g).
 - [] 交互式生成 DB Service 层 CRUD
 - [] 修复生成的interface 文件名为 XXX_interfaces.ts
 - [] 注入Error到error_factories.ts
+- [] 修复template中关于joi的写法问题
 
 ## 命令设计
 
