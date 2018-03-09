@@ -66,11 +66,11 @@ We have 2 commands: new and generate(alias g).
 - [x] 注入路由参数到 `api_router`
 - [x] 注入路由参数到 `doc_generator`
 - [x] 将`interface`写入interface目录下
+- [x] 修复生成的interface 文件名为 XXX_interfaces.ts
+- [x] 修复template中关于joi的写法问题
+- [] 注入Error到error_factories.ts
 - [] 一键生成 DB Service 层 CRUD
 - [] 交互式生成 DB Service 层 CRUD
-- [] 修复生成的interface 文件名为 XXX_interfaces.ts
-- [] 注入Error到error_factories.ts
-- [] 修复template中关于joi的写法问题
 
 ## 命令设计
 

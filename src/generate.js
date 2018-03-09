@@ -61,7 +61,12 @@ function generate(program, { cwd }) {
 function create_file(type, name, target_path) {
   const formated_name = capitalize_first_letter(snake_to_camel(name));
   const template_path = path.join(__dirname, '../src', `${type}.njk`);
-  const filename = type === 'error' ? `${type}.ts` : `${name}_${type}.ts`;
+  const filename = type === 'error'
+    ? `${type}.ts` 
+    : type === 'interface' 
+    ? `${name}_${type}s.ts`
+    : `${name}_${type}.ts`;
+
   const file_path = path.join(target_path, filename);
 
   fs.writeFileSync(file_path, env_nunjucks.render(`${type}.njk`, {
